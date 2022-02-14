@@ -1,0 +1,250 @@
+*, *::after, *::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --big-fs: 3rem;
+    --semi-big-fs: 2rem;
+    --medium-fs: 1.5rem;
+    --normal-fs: 1.25rem;
+    --small-fs: 0.75rem;
+}
+
+body {
+    height: 100vh;
+    background-image: url(assets/HCMC.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+.current-weather {
+    position: relative;
+    margin: 2rem;
+    background-color: rgba(0,0,0,0.7);
+    width: max-content;
+    padding: 2rem 3rem;
+    padding-bottom: 3.75rem;
+}
+
+.location {
+    color: white;
+    font-size: var(--big-fs);
+}
+
+.date {
+    color: grey;
+    opacity: 0.7;
+    margin-top: .5rem;
+    font-style: italic;
+    font-size: var(--medium-fs);
+}
+
+.current-weather-info {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: 330px 200px 200px;
+    color: white;
+}
+
+.summary { 
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    align-items: center;
+    gap: 1.25rem;
+    margin-right: 2rem;
+}
+
+.weather-icon {
+    width: 9rem;
+    height: auto;
+    fill: #0af;
+    margin: 0 auto;
+    display: none;
+}
+
+.weather-icon.visible {
+    display: inline-block;
+}
+
+
+
+
+.avg-temp-and-description {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.avg-temp {
+    font-size: var(--big-fs);
+}
+
+.description {
+    font-size: var(--medium-fs);
+}
+
+.temps, .other-info {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    font-size: var(--normal-fs);
+    border-left: 1px solid #0af;
+}
+
+.unit-toggle {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+.unit-toggle > label {
+    font-size: var(--normal-fs);
+    cursor: pointer;
+}
+
+.unit-toggle-btn {
+    width: 3.5rem;
+    height: 1.75rem;
+    border-radius: 100vh;
+    outline: 0;
+    background: transparent;
+    border: 1px solid #0af;
+    display: flex;
+    cursor: pointer;
+    transition: opacity 250ms ease-in-out;
+}
+
+.unit-toggle-btn:hover {
+    opacity: .7;
+}
+
+.unit-toggle-btn::after {
+    content: '';
+    display: inline-block;
+    width: 1.2rem;
+    height: 1.2rem;
+    background-color: #0af;
+    border-radius: 50%;
+    margin: 3px;
+    margin-left: auto;
+}
+
+.cel-label:checked ~ .unit-toggle-btn::after {
+    margin-left: 3px;
+}
+
+.forecast-weather {
+    background-color: rgba(0,0,0,0.7);
+    width: 100%;
+    padding: 2rem;
+    padding-bottom: 3rem;
+    position: relative;
+    
+    transform: translateY(65%);
+    transition: transform 500ms ease-in-out;
+}
+
+.forecast-weather.visible {
+    transform: translateY(0);
+}
+
+.forecast-weather-toggle {
+    width: 7rem;
+    height: 1.5rem;
+    background-color: rgba(0,0,0,0.7);
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    display: grid;
+    place-items: center;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -1.5rem); 
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+.arrow {
+    --rotation: -135;
+    border: #0af solid;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    transition: transform 250ms ease-in-out;
+    transform: rotate(calc(var(--rotation) * 1deg));
+}
+
+.forecast-weather.visible .arrow {
+    --rotation: 45;
+}
+
+.forecast-weather-title {
+    color: #0af;
+    font-size: var(--semi-big-fs);
+    left: 50%;
+}
+
+.forecast-days {
+    margin-top: .5rem;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.forecast-day {
+    text-align: center;
+    transform: translateY(70%);
+    transition: 350ms ease-in-out;
+}
+
+.forecast-weather.visible .forecast-day {
+    animation: flyIn 350ms ease-in-out forwards;
+}
+
+.forecast-date {
+    color: white;
+    font-size: var(--normal-fs);
+    font-weight: medium;
+}
+
+.forecast-temp-high, .forecast-temp-low {
+    margin-top: .5rem;
+    color: gray;
+    font-size: var(--normal-fs);
+}
+
+.read-more-btn {
+    margin-top: 1rem;
+    cursor: pointer;
+    background-color: #0af;
+    color: white;
+    padding: .75rem 1.25rem;
+    font-size: var(--small-fs);
+    font-weight: bold;
+    border: none;
+    outline: none;
+    border-radius: .5rem;
+    transition: background-color 250ms ease-in-out;
+}
+
+.read-more-btn:hover {
+    background-color: rgb(0, 58, 87);
+}
+
+@keyframes flyIn {
+    100% {
+        transform: translateY(0);
+    }
+}
