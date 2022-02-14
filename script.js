@@ -32,7 +32,7 @@ const forecastTemplate = document.getElementById('forecast-day-template')
 const forecastDaysContainer = document.querySelector('[data-forecast-days-container]')
 const icons = document.querySelectorAll('.weather-icon')
 
-const API_KEY='94178045937e4465bb4192125211612'
+const API_KEY = process.env.WEATHER_APP_API_KEY
 const API_LINK = `http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=Ho Chi Minh&days=7&aqi=no&alerts=no`
 
 const WEATHER_ICON_MAP = [
