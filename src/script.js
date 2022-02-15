@@ -1,17 +1,17 @@
+import './style.css'
+
+const API_KEY = process.env.WEATHER_APP_API_KEY
+const API_LINK = `http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=Ho%20Chi%20Minh&days=7&aqi=no&alerts=no`
+
 
 // for styling the arrow button and animation 
 const forecastToggleBtn = document.querySelector('.forecast-weather-toggle')
 const forecastWeatherContainer = document.querySelector('.forecast-weather')
 const forecastDays = document.querySelectorAll('.forecast-day')
 
+
 forecastToggleBtn.addEventListener('click', () => {
     forecastWeatherContainer.classList.toggle('visible')
-})
-
-let duration = 0
-forecastDays.forEach(forecastDay => {
-    forecastDay.style.animationDelay = `${duration}ms`
-    duration += 100
 })
 
 // main fetching
@@ -32,27 +32,35 @@ const forecastTemplate = document.getElementById('forecast-day-template')
 const forecastDaysContainer = document.querySelector('[data-forecast-days-container]')
 const icons = document.querySelectorAll('.weather-icon')
 
-const API_KEY = process.env.WEATHER_APP_API_KEY
-const API_LINK = `http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=Ho Chi Minh&days=7&aqi=no&alerts=no`
-
 const WEATHER_ICON_MAP = [
     {
-        description: 'Sunny',
+        description: ['Sunny', 'Clear'],
         iconName: 'sun'
     },
     {
-        description: 'Partly cloudy',
+        description: ['Partly cloudy', 'Cloudy'],
         iconName: 'sun-cloud'
     },
     {
-        description: 'Patchy rain possible',
+        description: ['Patchy rain possible', 'Light drizzle', 'Light rain'],
         iconName: 'sun-cloud-rain'
-    }
+    },
+    {
+        description: ['Light rain shower', 'Moderate rain'],
+        iconName: 'rain'
+    },
+    {
+        description: 'Overcast',
+        iconName: 'smog'
+    },
+    
 ]
 
 let currentLocation
 let weathers
 let selectedDayIndex = 0
+
+
 
 
 unitToggleBtn.addEventListener('click', () => {
@@ -65,6 +73,15 @@ unitToggleBtn.addEventListener('click', () => {
     setUnits()
 })
 
+
+getWeather().then(({ weatherList, location }) => {
+    weathers = weatherList
+    currentLocation = location
+    showSelectedDayWeather(selectedDayIndex)
+    showForecastDays()
+})
+
+setUnits()
 
 async function getWeather() {
     return await fetch(API_LINK)
@@ -100,14 +117,6 @@ async function getWeather() {
             })
 }
 
-getWeather().then(({ weatherList, location }) => {
-    weathers = weatherList
-    currentLocation = location
-    showSelectedDayWeather(selectedDayIndex)
-    showForecastDays()
-})
-
-setUnits()
 
 function showSelectedDayWeather(dayIndex) {
     const weather = weathers[dayIndex]
@@ -181,7 +190,7 @@ function clearElementChildren(element) {
 }
 
 function getCurrentIcon(description) {
-    const currentWeather = WEATHER_ICON_MAP.find(weather => weather.description === description)
+    const currentWeather = WEATHER_ICON_MAP.find(weather =>( weather.description === description || weather.description.includes(description)))
     icons.forEach(icon => {
         icon.classList.remove('visible')
     })
