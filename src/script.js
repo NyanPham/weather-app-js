@@ -1,7 +1,7 @@
 import './style.css'
 
 const API_KEY = process.env.WEATHER_APP_API_KEY
-const API_LINK = `http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=Ho%20Chi%20Minh&days=7&aqi=no&alerts=no`
+const API_LINK = `https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=Ho%20Chi%20Minh&days=7&aqi=no&alerts=no`
 
 
 // for styling the arrow button and animation 
