@@ -80,9 +80,6 @@ body {
     display: inline-block;
 }
 
-
-
-
 .avg-temp-and-description {
     text-align: center;
     display: flex;
@@ -332,7 +329,7 @@ body {
 @media screen and (max-width: 475px) {
 
     :root {
-        --big-fs: 1.5rem;
+        --big-fs: 1.3rem;
         --semi-big-fs: 1.2rem;
         --medium-fs: 1rem;
         --normal-fs: 0.8rem;
@@ -342,15 +339,16 @@ body {
     .current-weather {
         margin: 0 auto;
         width: 100vw;
+        text-align: center;
     }
 
     .weather-icon {
-        width: 7rem;
+        width: 5rem;
     }
 
     .summary {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
     }
 }
 
