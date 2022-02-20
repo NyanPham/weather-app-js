@@ -60,6 +60,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
+![weatherForecast](https://user-images.githubusercontent.com/93678376/154846134-c7c5d76a-05f4-4899-ba73-267f4c8560ca.png)
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
